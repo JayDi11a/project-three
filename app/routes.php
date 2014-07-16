@@ -11,81 +11,44 @@
 |
 */
 
+
+
 Route::get('/', function()
 {
 	return View::make('index');
 });
 
 
-// List books / search results of books
-Route::get('/list/{format?}', function($format = 'html') {
-
-	// Set the path
-	$path = app_path().'/database/books.json';
-
-	// Load the json file
-	$books = File::get($path);
-
-	// Convert the string of JSON into object
-	$books = json_decode($books,true);
-
-	// Default - HTML
-	if($format == 'html') {
-		return View::make('list')->with('books',$books);		
-	}
-	// JSON
-	elseif($format == 'json') {
-		return Response::json($books);
-	}
-	// PDF (Coming soon)
-	elseif($format == 'pdf') {
-		return "This is the pdf (Coming soon).";
-	}	
-});
-
-
-
-
-// Display edit form
-Route::get('/edit/{title}', function() {
+Route::get('/lorem-ipsum/', function()
+{
+	$generator = new Badcow\LoremIpsum\Generator();
+	$paragraphs = $generator->getParagraphs(5);
+	
+	echo implode('<p>', $paragraphs);	
+	
+	return View::make('index');
 
 });
 
-// Process edit form
-Route::post('/edit/{title}', function() {
+
+Route::get('/user-generator', function()
+{
+
+	//require_once '/path/to/Faker/src/autoload.php';
+
+	$faker = Faker\Factory::create();
+
+	echo $faker->name;
+ 
+ 	echo $faker->address;
+  	
+	echo $faker->text;
+
+	return View::make('index');
 
 });
 
 
 
 
-// Display add form
-Route::get('/add/', function() {
 
-});
-
-// Process add form
-Route::post('/add/', function() {
-
-
-});
-
-
-
-
-// Debug route: Read in the books.json file
-Route::get('/data', function() {
-
-	// Set the path
-	$path = app_path().'/database/books.json';
-
-	// Load the json file
-	$books = File::get($path);
-
-	// Convert the string of JSON into object
-	$books = json_decode($books,true);
-
-	// Output so we can check it out
-	return Pre::render($books, 'Books');
-
-});

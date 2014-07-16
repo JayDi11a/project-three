@@ -4,8 +4,8 @@
 
 	<title>@yield('title','Foobooks')</title>
 
-	<link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="styles/foobooks.css" type="text/css">
+	<!-- <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="styles/foobooks.css" type="text/css"> -->
 
 	@yield('head')
 
@@ -13,7 +13,7 @@
 
 <body>
 
-	<a href='/'><img class='logo' src='<?php echo URL::asset('/images/logo@2x.png'); ?>' alt='Foobooks Logo'></a>
+	<!-- <a href='/'><img class='logo' src='<?php echo URL::asset('/images/logo@2x.png'); ?>' alt='Foobooks Logo'></a> -->
 
 	@yield('content')
 
