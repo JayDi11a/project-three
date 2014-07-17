@@ -27,9 +27,11 @@ Route::get('/lorem-ipsum', function()
 
 Route::get('/lorem-ipsum/{number}', function($number)
 {
+	echo View::make('words');
 	$generator = new Badcow\LoremIpsum\Generator();
 	$paragraphs = $generator->getParagraphs($number);
 	echo implode('<p>', $paragraphs);
+
 
 
 });
@@ -39,9 +41,10 @@ Route::get('/lorem-ipsum/{number}', function($number)
 
 
 
+
 Route::get('/user-generator', function()
 {
-	//echo 'Enter a number of paragraphs in the URL to generate that output';
+	//echo 'Enter a number of users in the URL to generate that output';
 	return View::make('users');
 
 });

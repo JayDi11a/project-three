@@ -14,7 +14,7 @@
 	
 	How many paragraphs do you want?
 	
-	<form action = "/lorem-ipsum/" method="POST">
+	<form action="/lorem-ipsum" method="POST">
 	
 		
 		<label for="paragraphs">Paragraphs</label>				
