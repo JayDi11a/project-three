@@ -15,36 +15,54 @@
 
 Route::get('/', function()
 {
-	return View::make('index');
+	return View::make('_master');
 });
 
 
-Route::get('/lorem-ipsum/', function()
+Route::get('/lorem-ipsum', function()
+{
+	return View::make('words');
+});
+
+
+Route::get('/lorem-ipsum/{number}', function($number)
 {
 	$generator = new Badcow\LoremIpsum\Generator();
-	$paragraphs = $generator->getParagraphs(5);
-	
-	echo implode('<p>', $paragraphs);	
-	
-	return View::make('index');
+	$paragraphs = $generator->getParagraphs($number);
+	echo implode('<p>', $paragraphs);
+
 
 });
+
+
+
+
 
 
 Route::get('/user-generator', function()
 {
+	//echo 'Enter a number of paragraphs in the URL to generate that output';
+	return View::make('users');
 
+});
+
+
+
+Route::get('/user-generator/{number}', function($number)
+
+{
+	
 	//require_once '/path/to/Faker/src/autoload.php';
 
-	$faker = Faker\Factory::create();
+	$faker = Faker\Factory::create($number);
 
-	echo $faker->name;
+	echo $faker->name, "\n";
  
- 	echo $faker->address;
+ 	echo $faker->address, "\n";
   	
-	echo $faker->text;
+	//echo $faker->text, "\n";
 
-	return View::make('index');
+	//return View::make('user-generator');
 
 });
 
